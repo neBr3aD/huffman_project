@@ -35,19 +35,6 @@ Telegram-бот для сжатия файлов `.txt` и распаковки 
 - Python 3.9 или новее
 - CMake 3.16 или новее
 - Компилятор с поддержкой C++17
-- Средства разработки Python
-
-### macOS
-
-Установите инструменты командной строки Xcode (`xcode-select --install`), Python 3 и CMake. CMake можно установить, например, через Homebrew.
-
-### Linux
-
-Установите Python 3.9+, CMake, компилятор C++17 и заголовки/средства разработки Python с помощью пакетного менеджера вашей системы. Названия пакетов и команды установки зависят от дистрибутива.
-
-### Windows
-
-Установите Python 3.9+, CMake и Visual Studio Build Tools с workload «Desktop development with C++» (или Visual Studio с поддержкой разработки на C++). При установке Python включите его в `PATH`.
 
 ## Установка и сборка бота
 
@@ -87,15 +74,13 @@ cmake --build build --parallel
 TOKEN = "вставьте-сюда-токен-от-BotFather"
 ```
 
-Файл `my_token_bot.py` исключён из Git через `.gitignore`: не добавляйте его в коммиты и не публикуйте токен.
-
 Запустите бота из корня проекта:
 
 ```sh
 python bot.py
 ```
 
-В Windows запустите его Python из виртуального окружения:
+В Windows запустите его из виртуального окружения:
 
 ```powershell
 .\venv\Scripts\python.exe bot.py
