@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "include/my_string.hpp"
 #include "include/huffman.hpp"
 
@@ -131,20 +132,41 @@ bool decompressFile(const char* inFile, const char* outFile) {
     return true;
 }
 
-int main() {
-    const char* src = "test.txt";
+int main(int argc, char* argv[]) {
+    if (argc > 2) {
+        std::cerr << "Использование: " << argv[0] << " [путь_к_файлу]" << '\n';
+        return 1;
+    }
+
+    std::string src;
+    if (argc == 2) {
+        src = argv[1];
+    } else {
+        std::cout << "Введите путь к файлу для архивации: ";
+        std::getline(std::cin, src);
+    }
+    if (src.empty()) {
+        std::cerr << "Путь к файлу не указан." << '\n';
+        return 1;
+    }
+
     const char* arc = "archive.huff";
     const char* res = "restored.txt";
 
     std::cout << "Архивирую..." << '\n';
-    if (compressFile(src, arc)) {
-        std::cout << "Готово! Сохранено в " << arc << '\n';
+    if (!compressFile(src.c_str(), arc)) {
+        std::cerr << "Не удалось прочитать входной файл или создать архив: "
+                  << src << '\n';
+        return 1;
     }
+    std::cout << "Готово! Сохранено в " << arc << '\n';
 
     std::cout << "Распаковываю..." << '\n';
-    if (decompressFile(arc, res)) {
-        std::cout << "Готово! Восстановлено в " << res << '\n';
+    if (!decompressFile(arc, res)) {
+        std::cerr << "Не удалось распаковать архив " << arc << '\n';
+        return 1;
     }
+    std::cout << "Готово! Восстановлено в " << res << '\n';
 
     return 0;
 }

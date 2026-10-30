@@ -33,3 +33,9 @@ pybind11_add_module(huffman_archiver src/pybind_wrapper.cpp)
 set_target_properties(huffman_archiver PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )
+
+add_executable(huffman_cli src/main.cpp)
+target_include_directories(huffman_cli PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+set_target_properties(huffman_cli PROPERTIES
+    OUTPUT_NAME huffman
+)
