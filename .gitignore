@@ -1,0 +1,14 @@
+.DS_Store
+.env
+my_token_bot.py
+venv/
+build/
+__pycache__/
+*.py[cod]
+*.o
+*.so
+*.dylib
+*.dll
+/main
+*.huff
+*_restored.txt
